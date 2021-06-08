@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "healthfact_example"
+version = "0.1.0"
+description = "Example repository for claim veracity task"
+authors = ["jamesmf <jamesmf@fastmail.net>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+transformers = {extras = ["torch"], version = "^4.6.1"}
+datasets = "^1.7.0"
+tensorflow-gpu = "^2.5.0"
+jupyter = "^1.0.0"
+plotly = "^4.14.3"
+psutil = "^5.8.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
