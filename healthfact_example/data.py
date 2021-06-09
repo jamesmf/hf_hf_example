@@ -34,8 +34,14 @@ def map_example_to_dict(
 
 
 def to_tf_dataset(
-    df: pd.DataFrame, tokenizer: BertTokenizer, batch_size: int = 4, max_len: int = 128
+    df: pd.DataFrame,
+    tokenizer: BertTokenizer,
+    batch_size: int = 4,
+    max_len: int = 128,
+    repeat=True,
 ) -> tf.data.Dataset:
+    # since the dataset is small, manually shuffle. Skip if test
+    df = df.sample(frac=1)
     # prepare list, so that we can build up final TensorFlow dataset from slices.
     input_ids, token_types, attention_masks, labels = [], [], [], []
 
@@ -48,11 +54,14 @@ def to_tf_dataset(
     input_ids = tf.ragged.constant(input_ids, dtype=tf.int32)
     token_types = tf.ragged.constant(token_types, dtype=tf.int32)
     attention_masks = tf.ragged.constant(attention_masks, dtype=tf.int32)
-    return (
+    dataset = (
         tf.data.Dataset.from_tensor_slices(
             (input_ids, token_types, attention_masks, labels)
         )
         .map(map_example_to_dict)
-        .shuffle(buffer_size=1000)
+        .shuffle(buffer_size=10000)
         .padded_batch(batch_size)
     )
+    if repeat:
+        dataset = dataset.repeat()
+    return dataset

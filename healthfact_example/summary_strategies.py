@@ -15,7 +15,7 @@ import transformers
 
 def extract_main_text_subset(strategy: str, df: pd.DataFrame, **kwargs) -> List[str]:
     if strategy == "first":
-        return extract_first(df, kwargs.get("n_tokens", 900))
+        return extract_first(df, kwargs.get("n_tokens", 5000))
     assert False, "Passed an invalid strategy"
 
 
