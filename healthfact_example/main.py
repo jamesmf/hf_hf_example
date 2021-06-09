@@ -73,6 +73,7 @@ def main(args: argparse.Namespace):
     metrics, confusion = evaluate_model(tf_test, model)
     mlflow.log_metrics(metrics)
     artifact_path = mlflow.active_run().to_dictionary()["info"]["artifact_uri"]
+    os.makedirs(artifact_path, exist_ok=True)
     np.save(os.path.join(artifact_path, "confusion"), confusion)
 
     return tf_train, train, tokenizer, model, tf_test, metrics, confusion

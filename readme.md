@@ -57,14 +57,14 @@ Sample MLFlow output:
 
 Accuracy, macro-F1, precision, and recall are all reported on the test set, along with a confusion matrix.
 
-For instance, for run `63f83adde6f6487394d5651db5b87d37`, the metrics were:
+For instance, for run `d8098f9d9dec4941917f45679ccdba17`, the metrics were:
 
 ```json
 {
-    "accuracy": 0.673,
-    "f1": 0.547,
-    "precision": 0.560,
-    "recall": 0.54, 
+    "accuracy": 0.69,
+    "f1": 0.562,
+    "precision": 0.591,
+    "recall": 0.547, 
     "confusion": [
         [278,  71,  33,   5],
         [ 88,  65,  40,   8],
